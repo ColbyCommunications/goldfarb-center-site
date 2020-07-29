@@ -18,7 +18,8 @@
         "wpackagist-plugin/cloudflare": "^3.4.1",
         "devgeniem/wp-redis-object-cache-dropin": "^1.6",
         "wpackagist-plugin/cache-control": "^2.2.3",
-        "colbycommunications/colby-base-theme": "dev-master"
+        "colbycommunications/colby-base-theme": "dev-master",
+        "colbycommunications/colby-goldfarb-theme": "dev-master"
     },
     "authors": [
         {
@@ -27,6 +28,10 @@
         }
     ],
     "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme"
+        },
         {
             "type": "git",
             "url": "https://github.com/ColbyCommunications/colby-base-theme"

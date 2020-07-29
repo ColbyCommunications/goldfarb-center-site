@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7003a0c414394dcad47eef7c836e377d",
+    "content-hash": "26f2c575d30d2d6a709979003796d470",
     "packages": [
         {
             "name": "brain/hierarchy",
@@ -68,7 +68,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-base-theme",
-                "reference": "201445a351712757134b1ec6e8f39d6a666dab2a"
+                "reference": "9617fe2191a1a97d90ccb392670aed839106ec44"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -108,7 +108,55 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-07-29T14:52:14+00:00"
+            "time": "2020-07-29T20:29:36+00:00"
+        },
+        {
+            "name": "colbycommunications/colby-goldfarb-theme",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
+                "reference": "13a9782fcddd0a1e4176bd9eb583cc8353f6208a"
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "illuminate/support": "5.6.*",
+                "php": ">=7.1",
+                "roots/sage-lib": "~9.0.9",
+                "soberwp/controller": "~2.1.0"
+            },
+            "require-dev": {
+                "roots/sage-installer": "~1.6",
+                "squizlabs/php_codesniffer": "^2.8.0"
+            },
+            "type": "wordpress-theme",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpcs"
+                ],
+                "post-create-project-cmd": [
+                    "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brandon Waltz",
+                    "email": "brandon.waltz@colby.edu"
+                }
+            ],
+            "description": "Colby WordPress starter theme with a modern development workflow",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2020-07-29T20:13:38+00:00"
         },
         {
             "name": "colbycommunications/colby-groups",
@@ -1772,7 +1820,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "colbycommunications/colby-groups": 20,
-        "colbycommunications/colby-base-theme": 20
+        "colbycommunications/colby-base-theme": 20,
+        "colbycommunications/colby-goldfarb-theme": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
