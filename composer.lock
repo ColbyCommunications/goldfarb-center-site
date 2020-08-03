@@ -68,7 +68,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-base-theme",
-                "reference": "9617fe2191a1a97d90ccb392670aed839106ec44"
+                "reference": "25bd10a98af988dfcaab5214e58e617193de41e9"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -108,7 +108,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-07-29T20:29:36+00:00"
+            "time": "2020-08-03T19:32:14+00:00"
         },
         {
             "name": "colbycommunications/colby-goldfarb-theme",
@@ -116,7 +116,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "e1484ecac5c01b5651ee9fa55ea4e392f3674191"
+                "reference": "fa914898bf7c52ea6ae8116e2f6f182c31d92948"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -156,7 +156,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-07-29T20:37:03+00:00"
+            "time": "2020-08-03T20:03:43+00:00"
         },
         {
             "name": "colbycommunications/colby-groups",
