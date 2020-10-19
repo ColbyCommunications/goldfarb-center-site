@@ -114,7 +114,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "aaec8cc0c584b17a7473667b041a9d3556ad3bdb"
+                "reference": "b80ecccbffa89fdc955a399c873ac5f320ce3d22"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -154,7 +154,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-10-19 17:44:31"
+            "time": "2020-10-19 18:00:59"
         },
         {
             "name": "colbycommunications/colby-groups",
