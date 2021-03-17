@@ -21,6 +21,24 @@
           to: "/wp/wp-admin/$1"
           regexp: true
 
+"https://dev-goldfarbcenter.colby.edu/":
+    type: upstream
+    upstream: "app:http"
+    cache:
+        enabled: true
+
+        # Base the cache on the session cookie and custom Drupal cookies. Ignore all other cookies.
+        cookies: ['/^SS?ESS/', '/^SimpleSAML/', '/^wordpress_/', '/^wp-settings/']
+    redirects:
+      expires: 1d
+      paths:
+        '^/wp-admin$':
+          to: "/wp/wp-admin/"
+          regexp: true
+        '^/wp-admin/(.*)':
+          to: "/wp/wp-admin/$1"
+          regexp: true
+
 # *ALL* www.* requests should be redirected back to primary domain
 "https://www.{all}/":
     type: redirect
