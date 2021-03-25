@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "845107612867f54f9ee334bd8d6efc1c",
+    "content-hash": "a462d989521673c032e7fa394ec93dd0",
     "packages": [
         {
             "name": "brain/hierarchy",
@@ -1724,15 +1724,15 @@
         },
         {
             "name": "wpackagist-plugin/cloudflare",
-            "version": "4.2.2",
+            "version": "4.4.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cloudflare/",
-                "reference": "tags/4.2.2"
+                "reference": "tags/4.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cloudflare.4.2.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/cloudflare.4.4.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1760,15 +1760,15 @@
         },
         {
             "name": "wpackagist-plugin/elementor",
-            "version": "2.9.14",
+            "version": "3.1.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elementor/",
-                "reference": "tags/2.9.14"
+                "reference": "tags/3.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elementor.2.9.14.zip"
+                "url": "https://downloads.wordpress.org/plugin/elementor.3.1.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1778,15 +1778,15 @@
         },
         {
             "name": "wpackagist-plugin/header-footer",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/header-footer/",
-                "reference": "tags/3.2.1"
+                "reference": "tags/3.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/header-footer.3.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/header-footer.3.2.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1796,15 +1796,15 @@
         },
         {
             "name": "wpackagist-plugin/public-post-preview",
-            "version": "2.9.2",
+            "version": "2.9.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/public-post-preview/",
-                "reference": "tags/2.9.2"
+                "reference": "tags/2.9.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/public-post-preview.2.9.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/public-post-preview.2.9.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
