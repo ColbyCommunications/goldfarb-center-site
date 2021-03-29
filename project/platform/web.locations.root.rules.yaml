@@ -31,10 +31,6 @@
     allow: true
     scripts: true
     passthru: '/wp/$adminrewrite'
-'^/events/live-lovejoy-award$':
-    allow: true
-    scripts: true
-    passthru: '/events/live-lovejoy-award/'
 ################################
 ###     Project Specific    ###
 ###############################
