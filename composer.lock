@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfa0668ba4210d932a7b0c726f10af28",
+    "content-hash": "6856c720625ec9ec58003268ff871dbd",
     "packages": [
         {
             "name": "brain/hierarchy",
@@ -478,6 +478,37 @@
                 }
             ],
             "time": "2021-04-16T17:34:40+00:00"
+        },
+        {
+            "name": "gillesgoetsch/acf-smart-button",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gillesgoetsch/acf-smart-button",
+                "reference": "496b6c77077494c72600a802306d2fccd2c53a18"
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "license": [
+                "GPLv2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Goetsch",
+                    "homepage": "https://gillesgoetsch.ch"
+                }
+            ],
+            "description": "A simple, clean and lean ACF Field for internal and external links.",
+            "keywords": [
+                "acf",
+                "button",
+                "plugin",
+                "wordpress"
+            ],
+            "time": "2020-07-09T08:50:57+00:00"
         },
         {
             "name": "illuminate/config",
@@ -2110,7 +2141,8 @@
     "stability-flags": {
         "colbycommunications/colby-groups": 20,
         "colbycommunications/colby-base-theme": 20,
-        "colbycommunications/colby-goldfarb-theme": 20
+        "colbycommunications/colby-goldfarb-theme": 20,
+        "gillesgoetsch/acf-smart-button": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

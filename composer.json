@@ -23,7 +23,8 @@
         "wpackagist-plugin/public-post-preview": "^2.9.1",
         "wpackagist-plugin/wp-saml-auth": "^1.1.0",
         "wpackagist-plugin/siteimprove": "1.2.0",
-        "wpackagist-plugin/custom-post-type-ui": "1.9.2"
+        "wpackagist-plugin/custom-post-type-ui": "1.9.2",
+        "gillesgoetsch/acf-smart-button": "dev-master"
     },
     "authors": [
         {
@@ -32,6 +33,10 @@
         }
     ],
     "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/gillesgoetsch/acf-smart-button"
+        },
         {
             "type": "git",
             "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme"
