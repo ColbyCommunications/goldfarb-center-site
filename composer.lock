@@ -119,7 +119,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "2c1fe0bca30cadc66b2b2a8c59cada469ad70b4d"
+                "reference": "c5cc2b3bffb62f0710456982622154a59880162a"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -159,7 +159,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2021-08-17T20:08:16+00:00"
+            "time": "2021-08-18T13:26:40+00:00"
         },
         {
             "name": "colbycommunications/colby-groups",
@@ -2082,15 +2082,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-saml-auth",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-saml-auth/",
-                "reference": "tags/1.2.3"
+                "reference": "tags/1.2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-saml-auth.1.2.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-saml-auth.1.2.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
