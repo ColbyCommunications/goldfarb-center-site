@@ -3,7 +3,7 @@
     "description": "Configuration project for the some-site.colby.edu site",
     "type": "project",
     "require": {
-        "johnpbloch/wordpress-core-installer": "^1.0",
+        "johnpbloch/wordpress-core-installer": "^2.0",
         "johnpbloch/wordpress-core": "^5.1.1",
         "wpackagist-theme/twentyseventeen": "^2.1",
         "wpackagist-plugin/classic-editor": "^1.4",
@@ -19,8 +19,12 @@
         "devgeniem/wp-redis-object-cache-dropin": "^1.6",
         "wpackagist-plugin/cache-control": "^2.2.3",
         "colbycommunications/colby-base-theme": "dev-master",
-        "colbycommunications/colby-goldfarb-theme": "dev-master",
-        "wpackagist-plugin/public-post-preview": "^2.9.1"
+        "colbycommunications/colby-goldfarb-theme": "dev-dev",
+        "wpackagist-plugin/public-post-preview": "^2.9.1",
+        "wpackagist-plugin/wp-saml-auth": "^1.1.0",
+        "wpackagist-plugin/siteimprove": "1.2.0",
+        "wpackagist-plugin/custom-post-type-ui": "1.9.2",
+        "gillesgoetsch/acf-smart-button": "dev-master"
     },
     "authors": [
         {
@@ -29,6 +33,10 @@
         }
     ],
     "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/gillesgoetsch/acf-smart-button"
+        },
         {
             "type": "git",
             "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme"
@@ -50,8 +58,7 @@
         "wordpress-install-dir": "web/wp",
         "installer-paths": {
             "web/wp-content/mu-plugins/{$name}": [
-                "type:wordpress-muplugin",
-                "wpackagist-plugin/cache-control"
+                "type:wordpress-muplugin"
             ],
             "web/wp-content/plugins/{$name}": [
                 "type:wordpress-plugin"
