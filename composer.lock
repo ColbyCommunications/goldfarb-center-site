@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac1159aed1aabc8c5102edb7a66c4e74",
+    "content-hash": "c5ac751332b40d7cdc31471a39a1112d",
     "packages": [
         {
             "name": "brain/hierarchy",
@@ -115,11 +115,11 @@
         },
         {
             "name": "colbycommunications/colby-goldfarb-theme",
-            "version": "dev-master",
+            "version": "dev-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "d3823c3b55be5b91c941fb750cfd1766f0250b4f"
+                "reference": "fea0b9146563a93258933acb81fb46f1e8b239cb"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -132,7 +132,6 @@
                 "roots/sage-installer": "~1.6",
                 "squizlabs/php_codesniffer": "^2.8.0"
             },
-            "default-branch": true,
             "type": "wordpress-theme",
             "autoload": {
                 "psr-4": {
@@ -160,7 +159,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2021-08-27T16:16:11+00:00"
+            "time": "2021-08-30T01:00:58+00:00"
         },
         {
             "name": "colbycommunications/colby-groups",
