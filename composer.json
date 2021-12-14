@@ -15,16 +15,20 @@
         "wpackagist-plugin/header-footer": "^3.1.3",
         "wpackagist-plugin/duplicate-post": "^3.2.4",
         "wpackagist-plugin/wordpress-seo": "^13.3",
-        "wpackagist-plugin/cloudflare": "^4.2.2",
+        "colbycommunications/colby-goldfarb-theme": "dev-master",
+        "wpackagist-plugin/custom-post-type-ui": "1.9.2",
+        "gillesgoetsch/acf-smart-button": "dev-master",
+        "wpackagist-plugin/cloudflare": "^4.5.1",
         "devgeniem/wp-redis-object-cache-dropin": "^1.6",
         "wpackagist-plugin/cache-control": "^2.2.3",
         "colbycommunications/colby-base-theme": "dev-master",
-        "colbycommunications/colby-goldfarb-theme": "dev-dev",
         "wpackagist-plugin/public-post-preview": "^2.9.1",
+        "wp-graphql/wp-graphql": "^0.12.1",
+        "wp-graphql/wp-graphiql": "^1.0",
+        "pristas-peter/wp-graphql-gutenberg": "^0.3.4",
         "wpackagist-plugin/wp-saml-auth": "^1.1.0",
         "wpackagist-plugin/siteimprove": "1.2.0",
-        "wpackagist-plugin/custom-post-type-ui": "1.9.2",
-        "gillesgoetsch/acf-smart-button": "dev-master"
+        "wpackagist-plugin/query-monitor": "^3.7.1"
     },
     "authors": [
         {
@@ -58,7 +62,12 @@
         "wordpress-install-dir": "web/wp",
         "installer-paths": {
             "web/wp-content/mu-plugins/{$name}": [
+<<<<<<< HEAD
                 "type:wordpress-muplugin"
+=======
+                "type:wordpress-muplugin",
+                "wpackagist-plugin/wordpress-seo"
+>>>>>>> 4a9727e184127959c8c5a4eaa1837bb868b88d4d
             ],
             "web/wp-content/plugins/{$name}": [
                 "type:wordpress-plugin"
