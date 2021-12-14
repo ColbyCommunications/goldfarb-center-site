@@ -29,8 +29,6 @@ done
 
 printf "Sage Themes... \n"
 NPM_THEME_DIRS=`ls web/wp-content/themes/colby-*/resources/assets/scripts/@(main.js)` # Saves it to a variable
-
-
 for NPMTHEMEDIR in $NPM_THEME_DIRS; do
   IFS='/' read -ra THEME_PATH <<< "$NPMTHEMEDIR"
   #NPMTHEMEDIR_PRUNED=${NPMTHEMEDIR:0:$((${#NPMTHEMEDIR}-3))}
