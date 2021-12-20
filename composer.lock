@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7551aa9c53ae6af782ee9fe7b8d88967",
+    "content-hash": "25c03d32158ea4415391defdded5b7b6",
     "packages": [
         {
             "name": "brain/hierarchy",
@@ -2420,15 +2420,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.9.2",
+            "version": "1.10.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.9.2"
+                "reference": "tags/1.10.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.9.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.10.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
