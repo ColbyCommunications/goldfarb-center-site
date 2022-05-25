@@ -40,7 +40,7 @@ class Module extends Module_Base {
 		$settings = array_replace_recursive( $settings, [
 			'i18n' => [
 				'home_url' => home_url(),
-				'edit_template' => __( 'Edit Template', 'elementor-pro' ),
+				'edit_template' => esc_html__( 'Edit Template', 'elementor-pro' ),
 			],
 		] );
 
@@ -101,7 +101,7 @@ class Module extends Module_Base {
 			if ( $document ) {
 				$results[] = [
 					'id' => $post->ID,
-					'text' => $post->post_title . ' (' . $document->get_post_type_title() . ')',
+					'text' => esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')',
 				];
 			}
 		}
@@ -130,7 +130,7 @@ class Module extends Module_Base {
 		foreach ( $query->posts as $post ) {
 			$document = Plugin::elementor()->documents->get( $post->ID );
 			if ( $document ) {
-				$results[ $post->ID ] = $post->post_title . ' (' . $document->get_post_type_title() . ')';
+				$results[ $post->ID ] = esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')';
 			}
 		}
 
@@ -145,11 +145,6 @@ class Module extends Module_Base {
 
 			return $black_list;
 		} );
-		/**
-		 * @deprecated 2.6.0 The following filters will be removed in Elementor Pro 2.9.0:
-		 */
-		add_filter( 'elementor_pro/query_control/get_autocomplete/library_widget_templates', [ $this, 'get_autocomplete_for_library_widget_templates' ], 10, 2 );
-		add_filter( 'elementor_pro/query_control/get_value_titles/library_widget_templates', [ $this, 'get_value_title_for_library_widget_templates' ], 10, 2 );
 	}
 
 	public static function get_templates() {
@@ -159,8 +154,8 @@ class Module extends Module_Base {
 	public static function empty_templates_message() {
 		return '<div id="elementor-widget-template-empty-templates">
 				<div class="elementor-widget-template-empty-templates-icon"><i class="eicon-nerd" aria-hidden="true"></i></div>
-				<div class="elementor-widget-template-empty-templates-title">' . __( 'You Haven’t Saved Templates Yet.', 'elementor-pro' ) . '</div>
-				<div class="elementor-widget-template-empty-templates-footer">' . __( 'Want to learn more about Elementor library?', 'elementor-pro' ) . ' <a class="elementor-widget-template-empty-templates-footer-url" href="https://go.elementor.com/docs-library/" target="_blank">' . __( 'Click Here', 'elementor-pro' ) . '</a>
+				<div class="elementor-widget-template-empty-templates-title">' . esc_html__( 'You Haven’t Saved Templates Yet.', 'elementor-pro' ) . '</div>
+				<div class="elementor-widget-template-empty-templates-footer">' . esc_html__( 'Want to learn more about Elementor library?', 'elementor-pro' ) . ' <a class="elementor-widget-template-empty-templates-footer-url" href="https://go.elementor.com/docs-library/" target="_blank">' . esc_html__( 'Click Here', 'elementor-pro' ) . '</a>
 				</div>
 				</div>';
 	}

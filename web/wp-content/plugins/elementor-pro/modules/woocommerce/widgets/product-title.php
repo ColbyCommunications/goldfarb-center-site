@@ -18,7 +18,7 @@ class Product_Title extends Widget_Heading {
 	}
 
 	public function get_title() {
-		return __( 'Product Title', 'elementor-pro' );
+		return esc_html__( 'Product Title', 'elementor-pro' );
 	}
 
 	public function get_icon() {
@@ -33,8 +33,8 @@ class Product_Title extends Widget_Heading {
 		return [ 'woocommerce', 'shop', 'store', 'title', 'heading', 'product' ];
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->update_control(
 			'title',

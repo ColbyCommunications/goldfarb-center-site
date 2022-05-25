@@ -1,8 +1,9 @@
 <?php
 namespace ElementorPro\Modules\ThemeBuilder;
 
+use Elementor\Core\Admin\Admin_Notices;
+use Elementor\Core\App\App;
 use Elementor\Core\Base\Document;
-use Elementor\Elements_Manager;
 use Elementor\TemplateLibrary\Source_Local;
 use ElementorPro\Base\Module_Base;
 use ElementorPro\Core\Utils;
@@ -16,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Module extends Module_Base {
+
+	const ADMIN_LIBRARY_TAB_GROUP = 'theme';
 
 	public static function is_preview() {
 		return Plugin::elementor()->preview->is_preview_mode() || is_preview();
@@ -108,15 +111,17 @@ class Module extends Module_Base {
 	public function localize_settings( $settings ) {
 		$settings = array_replace_recursive( $settings, [
 			'i18n' => [
-				'publish_settings' => __( 'Publish Settings', 'elementor-pro' ),
-				'conditions' => __( 'Conditions', 'elementor-pro' ),
-				'display_conditions' => __( 'Display Conditions', 'elementor-pro' ),
-				'choose' => __( 'Choose', 'elementor-pro' ),
-				'add_condition' => __( 'Add Condition', 'elementor-pro' ),
-				'conditions_title' => __( 'Where Do You Want to Display Your %s?', 'elementor-pro' ),
-				'conditions_description' => __( 'Set the conditions that determine where your %s is used throughout your site.', 'elementor-pro' ) . '<br>' . __( 'For example, choose \'Entire Site\' to display the template across your site.', 'elementor-pro' ),
-				'conditions_publish_screen_description' => __( 'Apply current template to these pages.', 'elementor-pro' ),
-				'save_and_close' => __( 'Save & Close', 'elementor-pro' ),
+				'publish_settings' => esc_html__( 'Publish Settings', 'elementor-pro' ),
+				'conditions' => esc_html__( 'Conditions', 'elementor-pro' ),
+				'display_conditions' => esc_html__( 'Display Conditions', 'elementor-pro' ),
+				'choose' => esc_html__( 'Choose', 'elementor-pro' ),
+				'add_condition' => esc_html__( 'Add Condition', 'elementor-pro' ),
+				'conditions_title' => esc_html__( 'Where Do You Want to Display Your %s?', 'elementor-pro' ),
+				'conditions_description' => esc_html__( 'Set the conditions that determine where your %s is used throughout your site.', 'elementor-pro' ) . '<br>' . esc_html__( 'For example, choose \'Entire Site\' to display the template across your site.', 'elementor-pro' ),
+				'conditions_publish_screen_description' => esc_html__( 'Apply current template to these pages.', 'elementor-pro' ),
+				'save_and_close' => esc_html__( 'Save & Close', 'elementor-pro' ),
+				'open_site_editor' => esc_html__( 'Open Site Editor', 'elementor-pro' ),
+				'view_live_site' => esc_html__( 'View Live Site', 'elementor-pro' ),
 			],
 		] );
 
@@ -168,6 +173,10 @@ class Module extends Module_Base {
 			if ( $instance instanceof Theme_Document && 'section' !== $type ) {
 				$types[ $type ] .= $instance->get_location_label();
 			}
+
+			if ( Single::class === $document_type ) {
+				unset( $types[ $type ] );
+			}
 		}
 
 		return $types;
@@ -184,17 +193,17 @@ class Module extends Module_Base {
 		?>
 		<div id="elementor-new-template__form__location__wrapper" class="elementor-form-field">
 			<label for="elementor-new-template__form__location" class="elementor-form-field__label">
-				<?php echo __( 'Select a Location', 'elementor-pro' ); ?>
+				<?php echo esc_html__( 'Select a Location', 'elementor-pro' ); ?>
 			</label>
 			<div class="elementor-form-field__select__wrapper">
 				<select id="elementor-new-template__form__location" class="elementor-form-field__select" name="meta_location">
 					<option value="">
-						<?php echo __( 'Select...', 'elementor-pro' ); ?>
+						<?php echo esc_html__( 'Select...', 'elementor-pro' ); ?>
 					</option>
 					<?php
 
 					foreach ( $locations as $location => $settings ) {
-						echo sprintf( '<option value="%1$s">%2$s</option>', $location, $settings['label'] );
+						echo sprintf( '<option value="%1$s">%2$s</option>', esc_html( $location ), esc_html( $settings['label'] ) );
 					}
 					?>
 				</select>
@@ -214,12 +223,16 @@ class Module extends Module_Base {
 		?>
 		<div id="elementor-new-template__form__post-type__wrapper" class="elementor-form-field">
 			<label for="elementor-new-template__form__post-type" class="elementor-form-field__label">
-				<?php echo __( 'Select Post Type', 'elementor-pro' ); ?>
+				<?php echo esc_html__( 'Select Post Type', 'elementor-pro' ); ?>
 			</label>
 			<div class="elementor-form-field__select__wrapper">
-				<select id="elementor-new-template__form__post-type" class="elementor-form-field__select" name="<?php echo Single::REMOTE_CATEGORY_META_KEY; ?>">
+				<select
+					id="elementor-new-template__form__post-type"
+					class="elementor-form-field__select"
+					name="<?php echo Single::REMOTE_CATEGORY_META_KEY; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
+				>
 					<option value="">
-						<?php echo __( 'Select', 'elementor-pro' ); ?>...
+						<?php echo esc_html__( 'Select', 'elementor-pro' ); ?>...
 					</option>
 					<?php
 
@@ -227,23 +240,16 @@ class Module extends Module_Base {
 						$doc_type = Plugin::elementor()->documents->get_document_type( $post_type );
 						$doc_class = new $doc_type();
 
-						// New: Core >=2.7.0
-						$is_base_page = class_exists( '\Elementor\Core\DocumentTypes\PageBase' ) && $doc_class instanceof \Elementor\Core\DocumentTypes\PageBase;
-
-						// Old: Core < 2.7.0. TODO: Remove on 2.7.0.
-						if ( ! $is_base_page ) {
-							$doc_name = $doc_class->get_name();
-							$is_base_page = in_array( $doc_name, [ 'post', 'page', 'wp-post', 'wp-page' ] );
-						}
+						$is_base_page = $doc_class instanceof \Elementor\Core\DocumentTypes\PageBase;
 
 						if ( $is_base_page ) {
 							$post_type_object = get_post_type_object( $post_type );
-							echo sprintf( '<option value="%1$s">%2$s</option>', $post_type, $post_type_object->labels->singular_name );
+							echo sprintf( '<option value="%1$s">%2$s</option>', esc_html( $post_type ), esc_html( $post_type_object->labels->singular_name ) );
 						}
 					}
 
 					// 404.
-					echo sprintf( '<option value="%1$s">%2$s</option>', 'not_found404', __( '404 Page', 'elementor-pro' ) );
+					echo sprintf( '<option value="%1$s">%2$s</option>', 'not_found404', esc_html__( '404 Page', 'elementor-pro' ) );
 
 					?>
 				</select>
@@ -258,6 +264,19 @@ class Module extends Module_Base {
 			// For column type (Supported/Unsupported) & for `print_location_field`.
 			$this->get_locations_manager()->register_locations();
 		}
+	}
+
+	/**
+	 * An hack to hide the app menu on before render without remove the app page from system.
+	 *
+	 * @param $menu
+	 *
+	 * @return mixed
+	 */
+	public function hide_admin_app_submenu( $menu ) {
+		remove_submenu_page( Source_Local::ADMIN_MENU_SLUG, App::PAGE_ID );
+
+		return $menu;
 	}
 
 	public function admin_columns_content( $column_name, $post_id ) {
@@ -290,15 +309,8 @@ class Module extends Module_Base {
 	}
 
 	public function add_finder_items( array $categories ) {
-		$categories['general']['items']['theme-builder'] = [
-			'title' => __( 'Theme Builder', 'elementor-pro' ),
-			'icon' => 'library-save',
-			'url' => $this->get_admin_templates_url(),
-			'keywords' => [ 'template', 'header', 'footer', 'single', 'archive', 'search', '404', 'library' ],
-		];
-
 		$categories['create']['items']['theme-template'] = [
-			'title' => __( 'Add New Theme Template', 'elementor-pro' ),
+			'title' => esc_html__( 'Add New Theme Template', 'elementor-pro' ),
 			'icon' => 'plus-circle-o',
 			'url' => $this->get_admin_templates_url() . '#add_new',
 			'keywords' => [ 'template', 'theme', 'new', 'create' ],
@@ -316,7 +328,39 @@ class Module extends Module_Base {
 	 * @access public
 	 */
 	public function admin_menu() {
-		add_submenu_page( Source_Local::ADMIN_MENU_SLUG, '', __( 'Theme Builder', 'elementor-pro' ), 'publish_posts', $this->get_admin_templates_url( true ) );
+		add_submenu_page(
+			Source_Local::ADMIN_MENU_SLUG,
+			'',
+			esc_html__( 'Theme Builder', 'elementor-pro' ),
+			'publish_posts',
+			$this->get_admin_templates_url( true )
+		);
+	}
+
+	public function print_new_theme_builder_promotion( $views ) {
+		/** @var Source_Local $source */
+		$source = Plugin::elementor()->templates_manager->get_source( 'local' );
+
+		$current_tab_group = $source->get_current_tab_group();
+
+		if ( self::ADMIN_LIBRARY_TAB_GROUP === $current_tab_group ) {
+			/**
+			 * @var Admin_Notices $admin_notices
+			 */
+			$admin_notices = Plugin::elementor()->admin->get_component( 'admin-notices' );
+
+			$admin_notices->print_admin_notice( [
+				'title' => esc_html__( 'Meet the New Theme Builder: More Intuitive and Visual Than Ever', 'elementor-pro' ),
+				'description' => esc_html__( 'With the new Theme Builder you can visually manage every part of your site intuitively, making the task of designing a complete website that much easier', 'elementor-pro' ),
+				'button' => [
+					'text' => esc_html__( 'Try it Now', 'elementor-pro' ),
+					'class' => 'elementor-button elementor-button-success',
+					'url' => Plugin::elementor()->app->get_settings( 'menu_url' ),
+				],
+			] );
+		}
+
+		return $views;
 	}
 
 	private function get_admin_templates_url( $relative = false ) {
@@ -326,7 +370,32 @@ class Module extends Module_Base {
 			$base_url = admin_url( $base_url );
 		}
 
-		return add_query_arg( 'tabs_group', 'theme', $base_url );
+		return add_query_arg( 'tabs_group', self::ADMIN_LIBRARY_TAB_GROUP, $base_url );
+	}
+
+	private function add_conflicts_to_import_result( array $result ) {
+		$manifest_data = $result['manifest'];
+
+		if ( empty( $manifest_data['templates'] ) ) {
+			return $result;
+		}
+
+		foreach ( $manifest_data['templates'] as $template_id => $template ) {
+			if ( empty( $template['conditions'] ) ) {
+				continue;
+			}
+
+			foreach ( $template['conditions'] as $condition ) {
+				$condition = rtrim( implode( '/', $condition ), '/' );
+				$conflicts = $this->get_conditions_manager()->get_conditions_conflicts_by_location( $condition, $template['location'] );
+
+				if ( $conflicts ) {
+					$result['conflicts'][ $template_id ] = $conflicts;
+				}
+			}
+		}
+
+		return $result;
 	}
 
 	public function __construct() {
@@ -349,11 +418,16 @@ class Module extends Module_Base {
 
 		// Admin
 		add_action( 'admin_head', [ $this, 'admin_head' ] );
-		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ], 22 /* After core promotion menu */ );
+		add_filter( 'add_menu_classes', [ $this, 'hide_admin_app_submenu' ], 9 /* Before core submenu fixes */ );
 		add_action( 'manage_' . Source_Local::CPT . '_posts_custom_column', [ $this, 'admin_columns_content' ], 10, 2 );
 		add_action( 'elementor/template-library/create_new_dialog_fields', [ $this, 'print_location_field' ] );
 		add_action( 'elementor/template-library/create_new_dialog_fields', [ $this, 'print_post_type_field' ] );
 		add_filter( 'elementor/template-library/create_new_dialog_types', [ $this, 'create_new_dialog_types' ] );
+		add_filter( 'views_edit-' . Source_Local::CPT, [ $this, 'print_new_theme_builder_promotion' ], 9 );
+		add_filter( 'elementor/import/stage_1/result', function( array $result ) {
+			return $this->add_conflicts_to_import_result( $result );
+		} );
 
 		// Common
 		add_filter( 'elementor/finder/categories', [ $this, 'add_finder_items' ] );

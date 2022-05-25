@@ -2,7 +2,7 @@
 namespace ElementorPro\Modules\Carousel\Widgets;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
@@ -19,7 +19,7 @@ class Reviews extends Base {
 	}
 
 	public function get_title() {
-		return __( 'Reviews', 'elementor-pro' );
+		return esc_html__( 'Reviews', 'elementor-pro' );
 	}
 
 	public function get_icon() {
@@ -30,8 +30,25 @@ class Reviews extends Base {
 		return [ 'reviews', 'social', 'rating', 'testimonial', 'carousel' ];
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	public function get_inline_css_depends() {
+		$slides = $this->get_settings_for_display( 'slides' );
+
+		foreach ( $slides as $slide ) {
+			if ( $slide['rating'] ) {
+				return [
+					[
+						'name' => 'star-rating',
+						'is_core_dependency' => true,
+					],
+				];
+			}
+		}
+
+		return [];
+	}
+
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->update_control(
 			'slide_padding',
@@ -50,7 +67,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'heading_header',
 			[
-				'label' => __( 'Header', 'elementor-pro' ),
+				'label' => esc_html__( 'Header', 'elementor-pro' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -59,7 +76,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'header_background_color',
 			[
-				'label' => __( 'Background Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__header' => 'background-color: {{VALUE}}',
@@ -70,7 +87,7 @@ class Reviews extends Base {
 		$this->add_responsive_control(
 			'content_gap',
 			[
-				'label' => __( 'Gap', 'elementor-pro' ),
+				'label' => esc_html__( 'Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -88,10 +105,10 @@ class Reviews extends Base {
 		$this->add_control(
 			'show_separator',
 			[
-				'label' => __( 'Separator', 'elementor-pro' ),
+				'label' => esc_html__( 'Separator', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_off' => __( 'Hide', 'elementor-pro' ),
-				'label_on' => __( 'Show', 'elementor-pro' ),
+				'label_off' => esc_html__( 'Hide', 'elementor-pro' ),
+				'label_on' => esc_html__( 'Show', 'elementor-pro' ),
 				'default' => 'has-separator',
 				'return_value' => 'has-separator',
 				'prefix_class' => 'elementor-review--',
@@ -102,7 +119,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'separator_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__header' => 'border-bottom-color: {{VALUE}}',
@@ -116,7 +133,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'separator_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => esc_html__( 'Size', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -143,7 +160,7 @@ class Reviews extends Base {
 		$this->start_controls_section(
 			'section_content_style',
 			[
-				'label' => __( 'Text', 'elementor-pro' ),
+				'label' => esc_html__( 'Text', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -151,7 +168,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'name_title_style',
 			[
-				'label' => __( 'Name', 'elementor-pro' ),
+				'label' => esc_html__( 'Name', 'elementor-pro' ),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
@@ -159,7 +176,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'name_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__name' => 'color: {{VALUE}}',
@@ -172,14 +189,16 @@ class Reviews extends Base {
 			[
 				'name' => 'name_typography',
 				'selector' => '{{WRAPPER}} .elementor-testimonial__header, {{WRAPPER}} .elementor-testimonial__name',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 			]
 		);
 
 		$this->add_control(
 			'heading_title_style',
 			[
-				'label' => __( 'Title', 'elementor-pro' ),
+				'label' => esc_html__( 'Title', 'elementor-pro' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -188,7 +207,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__title' => 'color: {{VALUE}}',
@@ -207,7 +226,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'heading_review_style',
 			[
-				'label' => __( 'Review', 'elementor-pro' ),
+				'label' => esc_html__( 'Review', 'elementor-pro' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -216,7 +235,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'content_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__text' => 'color: {{VALUE}}',
@@ -229,7 +248,9 @@ class Reviews extends Base {
 			[
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .elementor-testimonial__text',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
@@ -238,7 +259,7 @@ class Reviews extends Base {
 		$this->start_controls_section(
 			'section_image_style',
 			[
-				'label' => __( 'Image', 'elementor-pro' ),
+				'label' => esc_html__( 'Image', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -246,7 +267,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'image_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => esc_html__( 'Size', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -263,7 +284,7 @@ class Reviews extends Base {
 		$this->add_responsive_control(
 			'image_gap',
 			[
-				'label' => __( 'Gap', 'elementor-pro' ),
+				'label' => esc_html__( 'Gap', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -281,7 +302,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'image_border_radius',
 			[
-				'label' => __( 'Border Radius', 'elementor-pro' ),
+				'label' => esc_html__( 'Border Radius', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial__image img' => 'border-radius: {{SIZE}}{{UNIT}}',
@@ -294,7 +315,7 @@ class Reviews extends Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			[
-				'label' => __( 'Icon', 'elementor-pro' ),
+				'label' => esc_html__( 'Icon', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -302,12 +323,12 @@ class Reviews extends Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'default',
 				'options' => [
-					'default' => __( 'Official', 'elementor-pro' ),
-					'custom' => __( 'Custom', 'elementor-pro' ),
+					'default' => esc_html__( 'Official', 'elementor-pro' ),
+					'custom' => esc_html__( 'Custom', 'elementor-pro' ),
 				],
 			]
 		);
@@ -315,7 +336,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'icon_custom_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
 					'icon_color' => 'custom',
@@ -330,7 +351,7 @@ class Reviews extends Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => esc_html__( 'Size', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -350,7 +371,7 @@ class Reviews extends Base {
 		$this->start_controls_section(
 			'section_rating_style',
 			[
-				'label' => __( 'Rating', 'elementor-pro' ),
+				'label' => esc_html__( 'Rating', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -358,7 +379,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'star_style',
 			[
-				'label' => __( 'Icon', 'elementor-pro' ),
+				'label' => esc_html__( 'Icon', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'star_fontawesome' => 'Font Awesome',
@@ -374,15 +395,15 @@ class Reviews extends Base {
 		$this->add_control(
 			'unmarked_star_style',
 			[
-				'label' => __( 'Unmarked Style', 'elementor-pro' ),
+				'label' => esc_html__( 'Unmarked Style', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'solid' => [
-						'title' => __( 'Solid', 'elementor-pro' ),
+						'title' => esc_html__( 'Solid', 'elementor-pro' ),
 						'icon' => 'eicon-star',
 					],
 					'outline' => [
-						'title' => __( 'Outline', 'elementor-pro' ),
+						'title' => esc_html__( 'Outline', 'elementor-pro' ),
 						'icon' => 'eicon-star-o',
 					],
 				],
@@ -393,7 +414,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'star_size',
 			[
-				'label' => __( 'Size', 'elementor-pro' ),
+				'label' => esc_html__( 'Size', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -411,7 +432,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'star_space',
 			[
-				'label' => __( 'Spacing', 'elementor-pro' ),
+				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -429,7 +450,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'stars_color',
 			[
-				'label' => __( 'Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-star-rating i:before' => 'color: {{VALUE}}',
@@ -441,7 +462,7 @@ class Reviews extends Base {
 		$this->add_control(
 			'stars_unmarked_color',
 			[
-				'label' => __( 'Unmarked Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Unmarked Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-star-rating i' => 'color: {{VALUE}}',
@@ -486,7 +507,7 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'image',
 			[
-				'label' => __( 'Image', 'elementor-pro' ),
+				'label' => esc_html__( 'Image', 'elementor-pro' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -497,16 +518,16 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'name',
 			[
-				'label' => __( 'Name', 'elementor-pro' ),
+				'label' => esc_html__( 'Name', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'John Doe', 'elementor-pro' ),
+				'default' => esc_html__( 'John Doe', 'elementor-pro' ),
 			]
 		);
 
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'elementor-pro' ),
+				'label' => esc_html__( 'Title', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '@username',
 			]
@@ -515,7 +536,7 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'rating',
 			[
-				'label' => __( 'Rating', 'elementor-pro' ),
+				'label' => esc_html__( 'Rating', 'elementor-pro' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
 				'max' => 5,
@@ -526,7 +547,7 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'selected_social_icon',
 			[
-				'label' => __( 'Icon', 'elementor-pro' ),
+				'label' => esc_html__( 'Icon', 'elementor-pro' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'social_icon',
 				'default' => [
@@ -596,12 +617,12 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => esc_html__( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::URL,
 				'dynamic' => [
 					'active' => true,
 				],
-				'placeholder' => __( 'https://your-link.com', 'elementor-pro' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'elementor-pro' ),
 
 			]
 		);
@@ -609,9 +630,9 @@ class Reviews extends Base {
 		$repeater->add_control(
 			'content',
 			[
-				'label' => __( 'Review', 'elementor-pro' ),
+				'label' => esc_html__( 'Review', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
+				'default' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
 			]
 		);
 	}
@@ -621,24 +642,24 @@ class Reviews extends Base {
 
 		return [
 			[
-				'content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
-				'name' => __( 'John Doe', 'elementor-pro' ),
+				'content' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
+				'name' => esc_html__( 'John Doe', 'elementor-pro' ),
 				'title' => '@username',
 				'image' => [
 					'url' => $placeholder_image_src,
 				],
 			],
 			[
-				'content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
-				'name' => __( 'John Doe', 'elementor-pro' ),
+				'content' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
+				'name' => esc_html__( 'John Doe', 'elementor-pro' ),
 				'title' => '@username',
 				'image' => [
 					'url' => $placeholder_image_src,
 				],
 			],
 			[
-				'content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
-				'name' => __( 'John Doe', 'elementor-pro' ),
+				'content' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor-pro' ),
+				'name' => esc_html__( 'John Doe', 'elementor-pro' ),
 				'title' => '@username',
 				'image' => [
 					'url' => $placeholder_image_src,
@@ -667,7 +688,7 @@ class Reviews extends Base {
 		}
 		$html .= '</cite>';
 
-		return $html;
+		echo wp_kses_post( $html );
 	}
 
 	protected function render_stars( $slide, $settings ) {
@@ -746,7 +767,8 @@ class Reviews extends Base {
 		$icon .= '<span class="elementor-screen-only">' . esc_html__( 'Read More', 'elementor-pro' ) . '</span>';
 		$this->add_render_attribute( 'icon_wrapper_' . $element_key, 'class', 'elementor-icon-' . $social );
 
-		return '<div ' . $this->get_render_attribute_string( 'icon_wrapper_' . $element_key ) . '>' . $icon . '</div>';
+		// Icon is escaped above, get_render_attribute_string() is safe
+		echo '<div ' . $this->get_render_attribute_string( 'icon_wrapper_' . $element_key ) . '>' . $icon . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function print_slide( array $slide, array $settings, $element_key ) {
@@ -766,7 +788,7 @@ class Reviews extends Base {
 		}
 
 		?>
-		<div <?php echo $this->get_render_attribute_string( $element_key . '-testimonial' ); ?>>
+		<div <?php $this->print_render_attribute_string( $element_key . '-testimonial' ); ?>>
 			<?php if ( $slide['image']['url'] || ! empty( $slide['name'] ) || ! empty( $slide['title'] ) ) :
 
 				$link_url = empty( $slide['link']['url'] ) ? false : $slide['link']['url'];
@@ -779,20 +801,22 @@ class Reviews extends Base {
 					$this->add_link_attributes( $header_element, $slide['link'] );
 				}
 				?>
-				<<?php echo $header_tag; ?> <?php echo $this->get_render_attribute_string( $header_element ); ?>>
+				<<?php Utils::print_validated_html_tag( $header_tag ); ?> <?php $this->print_render_attribute_string( $header_element ); ?>>
 					<?php if ( $slide['image']['url'] ) : ?>
 						<div class="elementor-testimonial__image">
-							<img <?php echo $this->get_render_attribute_string( $element_key . '-image' ); ?>>
+							<img <?php $this->print_render_attribute_string( $element_key . '-image' ); ?>>
 						</div>
 					<?php endif; ?>
-					<?php echo $this->print_cite( $slide, $settings ); ?>
-					<?php echo $this->print_icon( $slide, $element_key ); ?>
-				</<?php echo $header_tag; ?>>
+					<?php $this->print_cite( $slide, $settings ); ?>
+					<?php $this->print_icon( $slide, $element_key ); ?>
+				</<?php Utils::print_validated_html_tag( $header_tag ); ?>>
 			<?php endif; ?>
 			<?php if ( $slide['content'] ) : ?>
 				<div class="elementor-testimonial__content">
 					<div class="elementor-testimonial__text">
-						<?php echo $slide['content']; ?>
+						<?php
+						// Main content allowed
+						echo $slide['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 				</div>
 			<?php endif; ?>
@@ -802,5 +826,9 @@ class Reviews extends Base {
 
 	protected function render() {
 		$this->print_slider();
+	}
+
+	public function get_group_name() {
+		return 'carousel';
 	}
 }

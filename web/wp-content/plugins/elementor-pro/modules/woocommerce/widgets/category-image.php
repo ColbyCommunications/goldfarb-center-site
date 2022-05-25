@@ -18,7 +18,7 @@ class Category_Image extends Widget_Image {
 	}
 
 	public function get_title() {
-		return __( 'Category Image', 'elementor-pro' );
+		return esc_html__( 'Category Image', 'elementor-pro' );
 	}
 
 	public function get_icon() {
@@ -33,8 +33,8 @@ class Category_Image extends Widget_Image {
 		return [ 'woocommerce', 'category', 'image', 'thumbnail' ];
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->update_control(
 			'image',

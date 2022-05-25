@@ -1,6 +1,7 @@
 <?php
 namespace ElementorPro\Core;
 
+use ElementorPro\Plugin;
 use ElementorPro\Base\Module_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,6 +26,9 @@ final class Modules_Manager {
 			'popup',
 			'motion-fx',
 			'usage',
+			'screenshots',
+			'compatibility-tag',
+			'admin-top-bar',
 
 			// Modules with Widgets.
 			'theme-builder',
@@ -34,6 +38,7 @@ final class Modules_Manager {
 			'slides',
 			'nav-menu',
 			'animated-headline',
+			'hotspot',
 			'pricing',
 			'flip-box',
 			'call-to-action',
@@ -47,9 +52,15 @@ final class Modules_Manager {
 			'social',
 			'library',
 			'dynamic-tags',
+			'scroll-snap',
 			'sticky',
 			'wp-cli',
 			'lottie',
+			'code-highlight',
+			'custom-code',
+			'video-playlist',
+			'payments',
+			'progress-tracker',
 		];
 
 		foreach ( $modules as $module_name ) {
@@ -58,6 +69,16 @@ final class Modules_Manager {
 			$class_name = '\ElementorPro\Modules\\' . $class_name . '\Module';
 
 			/** @var Module_Base $class_name */
+			$experimental_data = $class_name::get_experimental_data();
+
+			if ( $experimental_data ) {
+				Plugin::elementor()->experiments->add_feature( $experimental_data );
+
+				if ( ! Plugin::elementor()->experiments->is_feature_active( $experimental_data['name'] ) ) {
+					continue;
+				}
+			}
+
 			if ( $class_name::is_active() ) {
 				$this->modules[ $module_name ] = $class_name::instance();
 			}

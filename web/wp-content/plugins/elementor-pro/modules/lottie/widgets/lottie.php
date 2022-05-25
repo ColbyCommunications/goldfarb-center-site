@@ -3,18 +3,11 @@
 namespace ElementorPro\Modules\Lottie\Widgets;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
-use Elementor\Group_Control_Background;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Box_Shadow;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Css_Filter;
-use Elementor\Group_Control_Image_Size;
-use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Modules\DynamicTags\Module as TagsModule;
-use Elementor\Repeater;
 use ElementorPro\Base\Base_Widget;
-use ElementorPro\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -37,7 +30,7 @@ class Lottie extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Lottie', 'elementor-pro' );
+		return esc_html__( 'Lottie', 'elementor-pro' );
 	}
 
 	public function get_script_depends() {
@@ -52,20 +45,20 @@ class Lottie extends Base_Widget {
 		return 'eicon-lottie';
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section( 'lottie', [
-			'label' => __( 'Lottie', 'elementor-pro' ),
+			'label' => esc_html__( 'Lottie', 'elementor-pro' ),
 		] );
 
 		$this->add_control(
 			'source',
 			[
-				'label' => __( 'Source', 'elementor-pro' ),
+				'label' => esc_html__( 'Source', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'media_file',
 				'options' => [
-					'media_file' => __( 'Media File', 'elementor-pro' ),
-					'external_url' => __( 'External URL', 'elementor-pro' ),
+					'media_file' => esc_html__( 'Media File', 'elementor-pro' ),
+					'external_url' => esc_html__( 'External URL', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -74,7 +67,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'source_external_url',
 			[
-				'label' => __( 'External URL', 'elementor-pro' ),
+				'label' => esc_html__( 'External URL', 'elementor-pro' ),
 				'type' => Controls_Manager::URL,
 				'condition' => [
 					'source' => 'external_url',
@@ -82,7 +75,7 @@ class Lottie extends Base_Widget {
 				'dynamic' => [
 					'active' => true,
 				],
-				'placeholder' => __( 'Enter your URL', 'elementor-pro' ),
+				'placeholder' => esc_html__( 'Enter your URL', 'elementor-pro' ),
 				'frontend_available' => true,
 			]
 		);
@@ -90,7 +83,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'source_json',
 			[
-				'label' => __( 'Upload JSON File', 'elementor-pro' ),
+				'label' => esc_html__( 'Upload JSON File', 'elementor-pro' ),
 				'type' => Controls_Manager::MEDIA,
 				'media_type' => 'application/json',
 				'frontend_available' => true,
@@ -103,19 +96,19 @@ class Lottie extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'elementor-pro' ),
+				'label' => esc_html__( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left'    => [
-						'title' => __( 'Left', 'elementor-pro' ),
+						'title' => esc_html__( 'Left', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'elementor-pro' ),
+						'title' => esc_html__( 'Center', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'elementor-pro' ),
+						'title' => esc_html__( 'Right', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -127,14 +120,14 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'caption_source',
 			[
-				'label' => __( 'Caption', 'elementor-pro' ),
+				'label' => esc_html__( 'Caption', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => [
-					'none' => __( 'None', 'elementor-pro' ),
-					'title' => __( 'Title', 'elementor-pro' ),
-					'caption' => __( 'Caption', 'elementor-pro' ),
-					'custom' => __( 'Custom', 'elementor-pro' ),
+					'none' => esc_html__( 'None', 'elementor-pro' ),
+					'title' => esc_html__( 'Title', 'elementor-pro' ),
+					'caption' => esc_html__( 'Caption', 'elementor-pro' ),
+					'custom' => esc_html__( 'Custom', 'elementor-pro' ),
 				],
 				'condition' => [
 					'source!' => 'external_url',
@@ -147,7 +140,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'caption',
 			[
-				'label' => __( 'Custom Caption', 'elementor-pro' ),
+				'label' => esc_html__( 'Custom Caption', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'render_type' => 'none',
 				'conditions' => [
@@ -173,13 +166,13 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'link_to',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => esc_html__( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'render_type' => 'none',
 				'default' => 'none',
 				'options' => [
-					'none' => __( 'None', 'elementor-pro' ),
-					'custom' => __( 'Custom URL', 'elementor-pro' ),
+					'none' => esc_html__( 'None', 'elementor-pro' ),
+					'custom' => esc_html__( 'Custom URL', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -188,10 +181,10 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'custom_link',
 			[
-				'label' => __( 'Link', 'elementor-pro' ),
+				'label' => esc_html__( 'Link', 'elementor-pro' ),
 				'type' => Controls_Manager::URL,
 				'render_type' => 'none',
-				'placeholder' => __( 'Enter your URL', 'elementor-pro' ),
+				'placeholder' => esc_html__( 'Enter your URL', 'elementor-pro' ),
 				'condition' => [
 					'link_to' => 'custom',
 				],
@@ -210,21 +203,21 @@ class Lottie extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'settings', [
-			'label' => __( 'Settings', 'elementor-pro' ),
+			'label' => esc_html__( 'Settings', 'elementor-pro' ),
 		] );
 
 		$this->add_control(
 			'trigger',
 			[
-				'label' => __( 'Trigger', 'elementor-pro' ),
+				'label' => esc_html__( 'Trigger', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'arriving_to_viewport',
 				'options' => [
-					'arriving_to_viewport' => __( 'Viewport', 'elementor-pro' ),
-					'on_click' => __( 'On Click', 'elementor-pro' ),
-					'on_hover' => __( 'On Hover', 'elementor-pro' ),
-					'bind_to_scroll' => __( 'Scroll', 'elementor-pro' ),
-					'none' => __( 'None', 'elementor-pro' ),
+					'arriving_to_viewport' => esc_html__( 'Viewport', 'elementor-pro' ),
+					'on_click' => esc_html__( 'On Click', 'elementor-pro' ),
+					'on_hover' => esc_html__( 'On Hover', 'elementor-pro' ),
+					'bind_to_scroll' => esc_html__( 'Scroll', 'elementor-pro' ),
+					'none' => esc_html__( 'None', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -233,7 +226,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'viewport',
 			[
-				'label' => __( 'Viewport', 'elementor-pro' ),
+				'label' => esc_html__( 'Viewport', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'render_type' => 'none',
 				'conditions' => [
@@ -271,7 +264,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'effects_relative_to',
 			[
-				'label' => __( 'Effects Relative To', 'elementor-pro' ),
+				'label' => esc_html__( 'Effects Relative To', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'render_type' => 'none',
 				'condition' => [
@@ -279,8 +272,8 @@ class Lottie extends Base_Widget {
 				],
 				'default' => 'viewport',
 				'options' => [
-					'viewport' => __( 'Viewport', 'elementor-pro' ),
-					'page' => __( 'Entire Page', 'elementor-pro' ),
+					'viewport' => esc_html__( 'Viewport', 'elementor-pro' ),
+					'page' => esc_html__( 'Entire Page', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -289,7 +282,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'loop',
 			[
-				'label' => __( 'Loop', 'elementor-pro' ),
+				'label' => esc_html__( 'Loop', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
 				'render_type' => 'none',
 				'condition' => [
@@ -304,7 +297,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'number_of_times',
 			[
-				'label' => __( 'Times', 'elementor-pro' ),
+				'label' => esc_html__( 'Times', 'elementor-pro' ),
 				'type' => Controls_Manager::NUMBER,
 				'render_type' => 'none',
 				'conditions' => [
@@ -331,7 +324,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'link_timeout',
 			[
-				'label' => __( 'Link Timeout', 'elementor-pro' ) . ' (ms)',
+				'label' => esc_html__( 'Link Timeout', 'elementor-pro' ) . ' (ms)',
 				'type' => Controls_Manager::NUMBER,
 				'render_type' => 'none',
 				'conditions' => [
@@ -354,7 +347,7 @@ class Lottie extends Base_Widget {
 						],
 					],
 				],
-				'description' => __( 'Redirect to link after selected timeout', 'elementor-pro' ),
+				'description' => esc_html__( 'Redirect to link after selected timeout', 'elementor-pro' ),
 				'min' => 0,
 				'max' => 5000,
 				'step' => 1,
@@ -365,7 +358,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'on_hover_out',
 			[
-				'label' => __( 'On Hover Out', 'elementor-pro' ),
+				'label' => esc_html__( 'On Hover Out', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'render_type' => 'none',
 				'condition' => [
@@ -373,9 +366,9 @@ class Lottie extends Base_Widget {
 				],
 				'default' => 'default',
 				'options' => [
-					'default' => __( 'Default', 'elementor-pro' ),
-					'reverse' => __( 'Reverse', 'elementor-pro' ),
-					'pause' => __( 'Pause', 'elementor-pro' ),
+					'default' => esc_html__( 'Default', 'elementor-pro' ),
+					'reverse' => esc_html__( 'Reverse', 'elementor-pro' ),
+					'pause' => esc_html__( 'Pause', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -384,7 +377,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'hover_area',
 			[
-				'label' => __( 'Hover Area', 'elementor-pro' ),
+				'label' => esc_html__( 'Hover Area', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'render_type' => 'none',
 				'condition' => [
@@ -392,9 +385,9 @@ class Lottie extends Base_Widget {
 				],
 				'default' => 'animation',
 				'options' => [
-					'animation' => __( 'Animation', 'elementor-pro' ),
-					'column' => __( 'Column', 'elementor-pro' ),
-					'section' => __( 'Section', 'elementor-pro' ),
+					'animation' => esc_html__( 'Animation', 'elementor-pro' ),
+					'column' => esc_html__( 'Column', 'elementor-pro' ),
+					'section' => esc_html__( 'Section', 'elementor-pro' ),
 				],
 				'frontend_available' => true,
 			]
@@ -403,7 +396,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'play_speed',
 			[
-				'label' => __( 'Play Speed', 'elementor-pro' ) . ' (x)',
+				'label' => esc_html__( 'Play Speed', 'elementor-pro' ) . ' (x)',
 				'type' => Controls_Manager::SLIDER,
 				'render_type' => 'none',
 				'condition' => [
@@ -431,7 +424,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'start_point',
 			[
-				'label' => __( 'Start Point', 'elementor-pro' ),
+				'label' => esc_html__( 'Start Point', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'frontend_available' => true,
 				'render_type' => 'none',
@@ -446,7 +439,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'end_point',
 			[
-				'label' => __( 'End Point', 'elementor-pro' ),
+				'label' => esc_html__( 'End Point', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'frontend_available' => true,
 				'render_type' => 'none',
@@ -461,7 +454,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'reverse_animation',
 			[
-				'label' => __( 'Reverse', 'elementor-pro' ),
+				'label' => esc_html__( 'Reverse', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
 				'render_type' => 'none',
 				'conditions' => [
@@ -488,12 +481,12 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'renderer',
 			[
-				'label' => __( 'Renderer', 'elementor-pro' ),
+				'label' => esc_html__( 'Renderer', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'svg',
 				'options' => [
-					'svg' => __( 'SVG', 'elementor-pro' ),
-					'canvas' => __( 'Canvas', 'elementor-pro' ),
+					'svg' => esc_html__( 'SVG', 'elementor-pro' ),
+					'canvas' => esc_html__( 'Canvas', 'elementor-pro' ),
 				],
 				'separator' => 'before',
 				'frontend_available' => true,
@@ -503,7 +496,7 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'lazyload',
 			[
-				'label' => __( 'Lazy Load', 'elementor-pro' ),
+				'label' => esc_html__( 'Lazy Load', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default' => '',
@@ -517,7 +510,7 @@ class Lottie extends Base_Widget {
 		$this->start_controls_section(
 			'style',
 			[
-				'label' => __( 'Lottie', 'elementor-pro' ),
+				'label' => esc_html__( 'Lottie', 'elementor-pro' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -525,7 +518,7 @@ class Lottie extends Base_Widget {
 		$this->add_responsive_control(
 			'width',
 			[
-				'label' => __( 'Width', 'elementor-pro' ),
+				'label' => esc_html__( 'Width', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => '%',
@@ -560,7 +553,7 @@ class Lottie extends Base_Widget {
 		$this->add_responsive_control(
 			'space',
 			[
-				'label' => __( 'Max Width', 'elementor-pro' ),
+				'label' => esc_html__( 'Max Width', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => '%',
@@ -604,14 +597,14 @@ class Lottie extends Base_Widget {
 
 			$this->start_controls_tab( 'normal',
 				[
-					'label' => __( 'Normal', 'elementor-pro' ),
+					'label' => esc_html__( 'Normal', 'elementor-pro' ),
 				]
 			);
 
 			$this->add_control(
 				'opacity',
 				[
-					'label' => __( 'Opacity', 'elementor-pro' ),
+					'label' => esc_html__( 'Opacity', 'elementor-pro' ),
 					'type' => Controls_Manager::SLIDER,
 					'range' => [
 						'px' => [
@@ -639,14 +632,14 @@ class Lottie extends Base_Widget {
 
 			$this->start_controls_tab( 'hover',
 				[
-					'label' => __( 'Hover', 'elementor-pro' ),
+					'label' => esc_html__( 'Hover', 'elementor-pro' ),
 				]
 			);
 
 			$this->add_control(
 				'opacity_hover',
 				[
-					'label' => __( 'Opacity', 'elementor-pro' ),
+					'label' => esc_html__( 'Opacity', 'elementor-pro' ),
 					'type' => Controls_Manager::SLIDER,
 					'range' => [
 						'px' => [
@@ -672,7 +665,7 @@ class Lottie extends Base_Widget {
 			$this->add_control(
 				'background_hover_transition',
 				[
-					'label' => __( 'Transition Duration', 'elementor-pro' ),
+					'label' => esc_html__( 'Transition Duration', 'elementor-pro' ),
 					'type' => Controls_Manager::SLIDER,
 					'range' => [
 						'px' => [
@@ -698,7 +691,7 @@ class Lottie extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_caption',
 			[
-				'label' => __( 'Caption', 'elementor-pro' ),
+				'label' => esc_html__( 'Caption', 'elementor-pro' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'caption_source!' => 'none',
@@ -709,19 +702,19 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'caption_align',
 			[
-				'label' => __( 'Alignment', 'elementor-pro' ),
+				'label' => esc_html__( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'elementor-pro' ),
+						'title' => esc_html__( 'Left', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'elementor-pro' ),
+						'title' => esc_html__( 'Center', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'elementor-pro' ),
+						'title' => esc_html__( 'Right', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -735,15 +728,14 @@ class Lottie extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			[
-				'label' => __( 'Text Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Text Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--caption-color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 			]
 		);
@@ -753,14 +745,16 @@ class Lottie extends Base_Widget {
 			[
 				'name' => 'caption_typography',
 				'selector' => '{{WRAPPER}} .e-lottie__caption',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 
 		$this->add_responsive_control(
 			'caption_space',
 			[
-				'label' => __( 'Spacing', 'elementor-pro' ),
+				'label' => esc_html__( 'Spacing', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -803,7 +797,7 @@ class Lottie extends Base_Widget {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$caption = $this->get_caption( $settings );
-		$widget_caption = $caption ? '<p class="e-lottie__caption"> ' . $caption . '</p>' : '';
+		$widget_caption = $caption ? '<p class="e-lottie__caption"> ' . esc_html( $caption ) . '</p>' : '';
 		$widget_container = '<div class="e-lottie__container"><div class="e-lottie__animation"></div>' . $widget_caption . '</div>';
 
 		if ( ! empty( $settings['custom_link']['url'] ) && 'custom' === $settings['link_to'] ) {
@@ -811,7 +805,8 @@ class Lottie extends Base_Widget {
 			$widget_container = sprintf( '<a class="e-lottie__container__link" %1$s>%2$s</a>', $this->get_render_attribute_string( 'url' ), $widget_container );
 		}
 
-		echo $widget_container;
+		// PHPCS - XSS ok. Everything that should be escaped in the way is escaped.
+		echo $widget_container; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function content_template() {

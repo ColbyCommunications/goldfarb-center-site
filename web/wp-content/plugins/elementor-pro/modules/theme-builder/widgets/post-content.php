@@ -2,7 +2,8 @@
 namespace ElementorPro\Modules\ThemeBuilder\Widgets;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\Posts\Skins\Skin_Content_Base;
@@ -19,7 +20,7 @@ class Post_Content extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Post Content', 'elementor-pro' );
+		return esc_html__( 'Post Content', 'elementor-pro' );
 	}
 
 	public function get_icon() {
@@ -39,11 +40,11 @@ class Post_Content extends Base_Widget {
 		return false;
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_style',
 			[
-				'label' => __( 'Style', 'elementor-pro' ),
+				'label' => esc_html__( 'Style', 'elementor-pro' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -51,23 +52,23 @@ class Post_Content extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'elementor-pro' ),
+				'label' => esc_html__( 'Alignment', 'elementor-pro' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'elementor-pro' ),
+						'title' => esc_html__( 'Left', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'elementor-pro' ),
+						'title' => esc_html__( 'Center', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'elementor-pro' ),
+						'title' => esc_html__( 'Right', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __( 'Justified', 'elementor-pro' ),
+						'title' => esc_html__( 'Justified', 'elementor-pro' ),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -80,15 +81,14 @@ class Post_Content extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			[
-				'label' => __( 'Text Color', 'elementor-pro' ),
+				'label' => esc_html__( 'Text Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}}' => 'color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				],
 			]
 		);
@@ -97,7 +97,9 @@ class Post_Content extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 			]
 		);
 

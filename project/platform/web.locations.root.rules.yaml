@@ -6,11 +6,10 @@
 ###          CORE           ###
 ###############################
 '^/robots\.txt$':
-  allow: true
+    allow: true
 '^/sitemap\.xml$':
-  allow: true
+    allow: true
 #reserved
-
 
 ################################
 ###        WORDPRESS        ###
@@ -24,15 +23,14 @@
 # constant. New multisites set up with the new paradigm will have their siteurl setting set correctly and will
 # also not be affected by this setting.
 '^/(?!wp/)([_0-9a-zA-Z-]+/)?wp-login.php$':
-  allow: true
-  scripts: true
-  passthru: '/wp/wp-login.php'
+    allow: true
+    scripts: true
+    passthru: '/wp/wp-login.php'
 # Allows directory-based multisites to still access the wp-admin and wp-include locations
 '^/(?!wp/)([_0-9a-zA-Z-]+/)?(?<adminrewrite>wp-(admin|includes).*)':
-  allow: true
-  scripts: true
-  passthru: '/wp/$adminrewrite'
-
+    allow: true
+    scripts: true
+    passthru: '/wp/$adminrewrite'
 ################################
 ###     Project Specific    ###
 ###############################

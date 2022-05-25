@@ -3,16 +3,16 @@ namespace ElementorPro\Modules\QueryControl;
 
 use Elementor\Controls_Manager;
 use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
+use Elementor\TemplateLibrary\Source_Local;
 use Elementor\Widget_Base;
 use ElementorPro\Base\Module_Base;
+use ElementorPro\Modules\QueryControl\Classes\Elementor_Post_Query;
+use ElementorPro\Modules\QueryControl\Classes\Elementor_Related_Query;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Posts;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Query;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Related;
-use ElementorPro\Modules\QueryControl\Classes\Elementor_Post_Query;
-use ElementorPro\Modules\QueryControl\Classes\Elementor_Related_Query;
 use ElementorPro\Modules\QueryControl\Controls\Query;
 use ElementorPro\Plugin;
-use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -67,17 +67,17 @@ class Module extends Module_Base {
 	 * @param Widget_Base $widget
 	 */
 	public static function add_exclude_controls( $widget ) {
-		// TODO: _deprecated_function( __METHOD__, '2.5.0', 'class Group_Control_Query' );
+		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '2.5.0', 'class Group_Control_Query' );
 
 		$widget->add_control(
 			'exclude',
 			[
-				'label' => __( 'Exclude', 'elementor-pro' ),
+				'label' => esc_html__( 'Exclude', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT2,
 				'multiple' => true,
 				'options' => [
-					'current_post' => __( 'Current Post', 'elementor-pro' ),
-					'manual_selection' => __( 'Manual Selection', 'elementor-pro' ),
+					'current_post' => esc_html__( 'Current Post', 'elementor-pro' ),
+					'manual_selection' => esc_html__( 'Manual Selection', 'elementor-pro' ),
 				],
 				'label_block' => true,
 			]
@@ -86,7 +86,7 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'exclude_ids',
 			[
-				'label' => __( 'Search & Select', 'elementor-pro' ),
+				'label' => esc_html__( 'Search & Select', 'elementor-pro' ),
 				'type' => self::QUERY_CONTROL_ID,
 				'autocomplete' => [
 					'object' => self::QUERY_OBJECT_POST,
@@ -103,10 +103,10 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'avoid_duplicates',
 			[
-				'label' => __( 'Avoid Duplicates', 'elementor-pro' ),
+				'label' => esc_html__( 'Avoid Duplicates', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
-				'description' => __( 'Set to Yes to avoid duplicate posts from showing up on the page. This only affects the frontend.', 'elementor-pro' ),
+				'description' => esc_html__( 'Set to Yes to avoid duplicate posts from showing up on the page. This only affects the frontend.', 'elementor-pro' ),
 			]
 		);
 
@@ -471,7 +471,7 @@ class Module extends Module_Base {
 
 					$results[] = [
 						'id' => $post->ID,
-						'text' => $text,
+						'text' => esc_html( $text ),
 					];
 				}
 				break;
@@ -501,7 +501,8 @@ class Module extends Module_Base {
 				}
 				break;
 			default:
-				$results = apply_filters( 'elementor_pro/query_control/get_autocomplete/' . $data['filter_type'], [], $data );
+				$results = apply_filters_deprecated( 'elementor_pro/query_control/get_autocomplete/' . $data['filter_type'], $data, '3.0.0', 'elementor/query/get_autocomplete/' . $data['filter_type'] );
+				$results = apply_filters( 'elementor/query/get_autocomplete/' . $data['filter_type'], [], $data );
 		}
 
 		return [
@@ -525,6 +526,7 @@ class Module extends Module_Base {
 		$results = [];
 		$display = $query_data['display'];
 		$query_args = $query_data['query'];
+		$query_args['no_found_rows'] = true;
 
 		switch ( $query_data['object'] ) {
 			case self::QUERY_OBJECT_TAX:
@@ -562,7 +564,7 @@ class Module extends Module_Base {
 				foreach ( $query->posts as $post ) {
 					$document = Plugin::elementor()->documents->get( $post->ID );
 					if ( $document ) {
-						$text = $post->post_title . ' (' . $document->get_post_type_title() . ')';
+						$text = esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')';
 						$results[] = [
 							'id' => $post->ID,
 							'text' => $text,
@@ -639,7 +641,7 @@ class Module extends Module_Base {
 				);
 
 				foreach ( $query->posts as $post ) {
-					$results[ $post->ID ] = $post->post_title;
+					$results[ $post->ID ] = esc_html( $post->post_title );
 				}
 				break;
 
@@ -661,7 +663,8 @@ class Module extends Module_Base {
 				}
 				break;
 			default:
-				$results = apply_filters( 'elementor_pro/query_control/get_value_titles/' . $request['filter_type'], [], $request );
+				$results = apply_filters_deprecated( 'elementor_pro/query_control/get_value_titles/' . $request['filter_type'], $request, '3.0.0', 'elementor/query/get_value_titles/' . $request['filter_type'] );
+				$results = apply_filters( 'elementor/query/get_value_titles/' . $request['filter_type'], [], $request );
 		}
 
 		return $results;
@@ -674,6 +677,7 @@ class Module extends Module_Base {
 		}
 		$display = $query_data['display'];
 		$query_args = $query_data['query'];
+		$query_args['no_found_rows'] = true;
 
 		$results = [];
 		switch ( $query_data['object'] ) {
@@ -707,7 +711,7 @@ class Module extends Module_Base {
 				foreach ( $query->posts as $post ) {
 					$document = Plugin::elementor()->documents->get( $post->ID );
 					if ( $document ) {
-						$results[ $post->ID ] = $post->post_title . ' (' . $document->get_post_type_title() . ')';
+						$results[ $post->ID ] = esc_html( $post->post_title ) . ' (' . $document->get_post_type_title() . ')';
 					}
 				}
 				break;
@@ -767,7 +771,7 @@ class Module extends Module_Base {
 				break;
 		}
 
-		return $text;
+		return esc_html( $text );
 	}
 
 	/**
@@ -837,7 +841,7 @@ class Module extends Module_Base {
 		$test_term = $term;
 		$names = [];
 		while ( $test_term->parent > 0 ) {
-			$test_term = get_term_by( 'term_taxonomy_id', $test_term->parent );
+			$test_term = get_term( $test_term->parent );
 			if ( ! $test_term ) {
 				break;
 			}
@@ -899,7 +903,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_query_args( $control_id, $settings ) {
-		// TODO: _deprecated_function( __METHOD__, '2.5.0', 'class Elementor_Post_Query' );
+		Plugin::elementor()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '2.5.0', 'class Elementor_Post_Query' );
 
 		$controls_manager = Plugin::elementor()->controls_manager;
 
@@ -976,7 +980,7 @@ class Module extends Module_Base {
 	public function localize_settings( $settings ) {
 		$settings = array_replace_recursive( $settings, [
 			'i18n' => [
-				'all' => __( 'All', 'elementor-pro' ),
+				'all' => esc_html__( 'All', 'elementor-pro' ),
 			],
 		] );
 

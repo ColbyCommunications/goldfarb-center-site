@@ -2,6 +2,7 @@
 namespace ElementorPro\Core\Editor;
 
 use Elementor\Core\Base\App;
+use ElementorPro\License\Admin as License_Admin;
 use ElementorPro\License\API as License_API;
 use ElementorPro\Plugin;
 
@@ -36,10 +37,14 @@ class Editor extends App {
 
 	public function get_init_settings() {
 		$settings = [
-			'i18n' => [],
+			'i18n' => [
+				// 'edit_element' is here for Backwards Compatibility for Elementor Pro versions <3.1.0
+				'edit_element' => esc_html__( 'Edit %s', 'elementor-pro' ),
+			],
 			'isActive' => License_API::is_license_active(),
 			'urls' => [
 				'modules' => ELEMENTOR_PRO_MODULES_URL,
+				'connect' => License_Admin::get_url(),
 			],
 		];
 
@@ -90,7 +95,7 @@ class Editor extends App {
 
 		$settings['elementPromotionURL'] = $connect_url;
 		$settings['dynamicPromotionURL'] = $connect_url;
-		$settings['i18n']['see_it_in_action'] = __( 'Activate License', 'elementor-pro' );
+		$settings['i18n']['see_it_in_action'] = esc_html__( 'Activate License', 'elementor-pro' );
 
 		return $settings;
 	}
