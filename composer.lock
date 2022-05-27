@@ -146,7 +146,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "0abd8308b6488b224983fc09a4c9c251170c1702"
+                "reference": "3c257b7c9780136c30c690d155ee75b13f22f4b5"
             },
             "require": {
                 "php": "^7.4|^8.0",
@@ -211,7 +211,7 @@
                 "issues": "https://github.com/roots/sage/issues",
                 "forum": "https://discourse.roots.io/"
             },
-            "time": "2022-05-27T17:50:33+00:00"
+            "time": "2022-05-27T19:04:01+00:00"
         },
         {
             "name": "colbycommunications/colby-ticket",
