@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9eef7c861af372e19f2b6da2f2562b29",
+    "content-hash": "ce061f08dc0ced5eec3eea034823245b",
     "packages": [
         {
             "name": "brick/math",
@@ -96,11 +96,11 @@
         },
         {
             "name": "colbycommunications/colby-goldfarb-theme",
-            "version": "dev-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
-                "reference": "63e03bc408c01cc8551d437eff801283f6324d87"
+                "reference": "a3bd7b5cde492c54eb01042bf5ebda644dbec34b"
             },
             "require": {
                 "php": "^7.4|^8.0",
@@ -113,6 +113,7 @@
                 "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
                 "log1x/sage-svg": "A useful SVG directive for inlining SVG's within Blade views (^1.0)."
             },
+            "default-branch": true,
             "type": "wordpress-theme",
             "extra": {
                 "acorn": {
@@ -165,7 +166,7 @@
                 "issues": "https://github.com/roots/sage/issues",
                 "forum": "https://discourse.roots.io/"
             },
-            "time": "2022-06-10T10:50:42+00:00"
+            "time": "2022-06-10T11:11:42+00:00"
         },
         {
             "name": "colbycommunications/colby-ticket",
