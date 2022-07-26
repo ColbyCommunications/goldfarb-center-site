@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4a4085424db9669f501d2b06f8eddab",
+    "content-hash": "ce061f08dc0ced5eec3eea034823245b",
     "packages": [
         {
             "name": "brick/math",
@@ -96,7 +96,7 @@
         },
         {
             "name": "colbycommunications/colby-goldfarb-theme",
-            "version": "dev-annual-report",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColbyCommunications/colby-goldfarb-theme",
@@ -113,6 +113,7 @@
                 "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
                 "log1x/sage-svg": "A useful SVG directive for inlining SVG's within Blade views (^1.0)."
             },
+            "default-branch": true,
             "type": "wordpress-theme",
             "extra": {
                 "acorn": {
