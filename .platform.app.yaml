@@ -29,7 +29,9 @@ mounts:
   "/web/.well-known/pki-validation":
     source: local
     source_path: web
-  "/tmp": "shared:files/tmp"
+  "/tmp":
+    source: local
+    source_path: "tmp"
 
 # The configuration of app when it is exposed to the web.
 web:
