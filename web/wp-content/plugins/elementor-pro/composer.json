@@ -1,0 +1,15 @@
+{
+    "name": "colbycommunications/elementor-pro",
+    "description": "Premium Elementor Pro plugin",
+    "keywords": [
+        "wordpress"
+    ],
+    "type": "wordpress-plugin",
+    "homepage": "https://github.com/colbycommunications/elementor-pro",
+    "authors": [
+        {
+            "name": "Brandon Waltz",
+            "email": "brandon.waltz@colby.edu"
+        }
+    ]
+}

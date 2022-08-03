@@ -21,6 +21,8 @@
 /web/wp-content/upgrade/*
 !/web/wp-content/upgrade/index.php
 
+!/web/wp-content/plugins/elementor-pro
+
 #Ignore mac stuff
 *.DS_Store
 
