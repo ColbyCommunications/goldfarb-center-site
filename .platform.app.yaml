@@ -29,7 +29,7 @@ mounts:
   "/web/.well-known/pki-validation":
     source: local
     source_path: web
-  "/tmp":
+  "/tmp/Colby-Material-v1.0":
     source: local
     source_path: "tmp"
 
