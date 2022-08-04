@@ -1,6 +1,6 @@
 <?php
 
-require_once('vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -150,7 +150,7 @@ if (false !== $strRelationships = getenv('PLATFORM_RELATIONSHIPS')) {
 // Define wp-content directory outside of WordPress core directory
 define('WP_HOME', $site_scheme . '://' . $site_host);
 define('WP_SITEURL', WP_HOME . '/wp');
-define('WP_TEMP_DIR ', dirname(__FILE__) . '/web/wp-content/uploads/tmp');
+
 
 define('WP_CONTENT_DIR', dirname(__FILE__) . '/web/wp-content');
 
@@ -203,6 +203,8 @@ ini_set('pcre.recursion_limit', 200000);
 if (!defined('ABSPATH') ) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
+
+define('FS_METHOD', 'direct');
 
 /**
  * Sets up WordPress vars and included files.
