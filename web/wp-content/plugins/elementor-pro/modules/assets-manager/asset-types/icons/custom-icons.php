@@ -268,13 +268,13 @@ class Custom_Icons extends  Assets_Base
         }
         $filesystem = self::get_wp_filesystem();
         $extract_to = trailingslashit(get_temp_dir() . pathinfo($zip_file, PATHINFO_FILENAME));
-        die(var_dump($extract_to));
+        
         
         $unzipped = $this->extract_zip($zip_file, $extract_to);
         if (is_wp_error($unzipped) ) {
             return $unzipped;
         }
-
+        die(var_dump(array_keys($filesystem->dirlist($extract_to))));
         // Find the right folder.
         $source_files = array_keys($filesystem->dirlist($extract_to));
         if (count($source_files) === 0 ) {
