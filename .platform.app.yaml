@@ -29,9 +29,6 @@ mounts:
   "/web/.well-known/pki-validation":
     source: local
     source_path: web
-  "/tmp/Colby-Material-v1.0":
-    source: local
-    source_path: "tmp/Colby-Material-v1.0"
 
 # The configuration of app when it is exposed to the web.
 web:
