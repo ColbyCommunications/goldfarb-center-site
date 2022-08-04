@@ -274,7 +274,7 @@ class Custom_Icons extends  Assets_Base
         if (is_wp_error($unzipped) ) {
             return $unzipped;
         }
-        die(var_dump(array_keys($filesystem->dirlist($extract_to))));
+        die(var_dump($filesystem));
         // Find the right folder.
         $source_files = array_keys($filesystem->dirlist($extract_to));
         if (count($source_files) === 0 ) {
