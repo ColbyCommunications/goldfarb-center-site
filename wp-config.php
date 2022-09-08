@@ -202,6 +202,7 @@ if (!defined('ABSPATH') ) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
+// Elementor icon support
 define('FS_METHOD', 'direct');
 
 /**
