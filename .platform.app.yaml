@@ -56,6 +56,3 @@ variables:
   php:
     upload_max_filesize: 128M
     memory_limit: 512M
-
-# The configuration of scheduled execution.
-crons: !include project/platform/crons.yaml
