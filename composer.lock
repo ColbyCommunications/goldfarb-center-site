@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "496307377b44330d0578a08382f567c0",
+    "content-hash": "6f053925befe0ec7438cff33a5dd412b",
     "packages": [
         {
             "name": "brick/math",
@@ -260,16 +260,16 @@
         },
         {
             "name": "colbycommunications/elementor-pro",
-            "version": "3.17.1",
+            "version": "3.18.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:ColbyCommunications/elementor-pro.git",
-                "reference": "5401930776b111bc1f8aef4e68103d543f0593e7"
+                "reference": "8d0f8c44fca3f22dbc6680fc718ecaa43d6761ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://satis.colby.edu/dist/colbycommunications/elementor-pro/colbycommunications-elementor-pro-5401930776b111bc1f8aef4e68103d543f0593e7-zip-929ff8.zip",
-                "reference": "5401930776b111bc1f8aef4e68103d543f0593e7"
+                "url": "https://satis.colby.edu/dist/colbycommunications/elementor-pro/colbycommunications-elementor-pro-8d0f8c44fca3f22dbc6680fc718ecaa43d6761ca-zip-6eb87d.zip",
+                "reference": "8d0f8c44fca3f22dbc6680fc718ecaa43d6761ca"
             },
             "type": "wordpress-plugin",
             "authors": [
@@ -283,7 +283,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2023-12-01T15:32:51+00:00"
+            "time": "2023-12-05T20:09:26+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -8295,15 +8295,15 @@
         },
         {
             "name": "wpackagist-plugin/siteimprove",
-            "version": "1.2.1",
+            "version": "2.0.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/siteimprove/",
-                "reference": "tags/1.2.1"
+                "reference": "tags/2.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/siteimprove.1.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/siteimprove.2.0.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
