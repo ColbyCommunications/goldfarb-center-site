@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "074b07f2b62d892cfaf67e1160f31157",
+    "content-hash": "496307377b44330d0578a08382f567c0",
     "packages": [
         {
             "name": "brick/math",
@@ -8241,15 +8241,15 @@
         },
         {
             "name": "wpackagist-plugin/elementor",
-            "version": "3.17.3",
+            "version": "3.18.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elementor/",
-                "reference": "tags/3.17.3"
+                "reference": "tags/3.18.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elementor.3.17.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/elementor.3.18.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
